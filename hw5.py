@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[9]:
+# In[2]:
 
 
 import string
@@ -20,17 +20,17 @@ def main(filename) :
     counter.update(list_file)
     counter.most_common()
     import csv
-    with open('count.csv', 'w', newline='') as fin:
+    with open('wordcount.csv', 'w', newline='') as fin:
         writer = csv.writer(fin, delimiter=',')
         writer.writerow(['word']+['count'])
         for idx, val in counter.most_common():
             writer.writerow([idx, val])
             
     import json
-    json.dump(counter.most_common(), open("count.json", 'w'))
+    json.dump(counter.most_common(), open("wordcount.json", 'w'))
             
     import pickle
-    with open('count.pickle', 'wb') as fil:
+    with open('wordcount.pkl', 'wb') as fil:
         pickle.dump(counter.most_common(), fil)
             
 if __name__ == '__main__':
