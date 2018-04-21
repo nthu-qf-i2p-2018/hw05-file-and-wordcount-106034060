@@ -5,8 +5,7 @@
 
 
 import string
-def main(filename="i_have_a_dream.txt") :
-    filename="i_have_a_dream.txt"
+def main(filename) :
     txtfile = open(filename)
     text = txtfile.read()
     from collections import Counter
