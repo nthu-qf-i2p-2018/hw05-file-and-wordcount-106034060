@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[27]:
+# In[9]:
 
 
 import string
@@ -16,7 +16,6 @@ def main(filename) :
         word = word.translate(translaotr)
         if (word != "") :
             list_file.append(word)
-    counter = Counter(list_file)
     counter = Counter()
     counter.update(list_file)
     counter.most_common()
@@ -28,8 +27,6 @@ def main(filename) :
             writer.writerow([idx, val])
             
     import json
-    f = open("count.json", 'w')
-    json.dump(counter.most_common(), f)
     json.dump(counter.most_common(), open("count.json", 'w'))
             
     import pickle
@@ -38,4 +35,5 @@ def main(filename) :
             
 if __name__ == '__main__':
     main("i_have_a_dream.txt")
+
 
