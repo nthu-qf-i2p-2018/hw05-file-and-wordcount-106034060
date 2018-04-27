@@ -1,6 +1,12 @@
 
 # coding: utf-8
 
+# In[112]:
+
+
+
+# coding: utf-8
+
 # In[2]:
 
 
@@ -11,9 +17,14 @@ def main(filename) :
     from collections import Counter
     unprocess_file=list(text.replace("\n", " ").split(" "))
     list_file = []
-    translaotr = str.maketrans('', '', string.punctuation)
+    
+    punc = string.punctuation.replace("-", "")
+    
+    translaotr = str.maketrans('', '', punc)
     for word in unprocess_file:
-        word = word.translate(translaotr)
+        if (word == "" or word == "--"):continue
+        if (word[-1] in string.punctuation) or (word[0] in string.punctuation):
+            word = word.translate(translaotr)
         if (word != "") :
             list_file.append(word)
     counter = Counter()
@@ -21,7 +32,7 @@ def main(filename) :
     counter.most_common()
     import csv
     with open('wordcount.csv', 'w', newline='') as fin:
-        writer = csv.writer(fin, delimiter=',')
+        writer = csv.writer(fin, delimiter=',', lineterminator='\n')
         writer.writerow(['word']+['count'])
         for idx, val in counter.most_common():
             writer.writerow([idx, val])
@@ -35,5 +46,6 @@ def main(filename) :
             
 if __name__ == '__main__':
     main("i_have_a_dream.txt")
+
 
 
