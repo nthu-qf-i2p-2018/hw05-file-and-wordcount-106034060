@@ -1,13 +1,7 @@
 
 # coding: utf-8
 
-# In[112]:
-
-
-
-# coding: utf-8
-
-# In[2]:
+# In[3]:
 
 
 import string
@@ -15,18 +9,15 @@ def main(filename) :
     txtfile = open(filename)
     text = txtfile.read()
     from collections import Counter
-    unprocess_file=list(text.replace("\n", " ").split(" "))
     list_file = []
-    
-    punc = string.punctuation.replace("-", "")
-    
-    translaotr = str.maketrans('', '', punc)
-    for word in unprocess_file:
-        if (word == "" or word == "--"):continue
-        if (word[-1] in string.punctuation) or (word[0] in string.punctuation):
-            word = word.translate(translaotr)
-        if (word != "") :
-            list_file.append(word)
+    for line in open(filename):
+        line = line.strip()
+        if not line:
+            continue
+        for word in line.split():
+            word = word.strip(string.punctuation)
+            if word:
+                list_file.append(word)
     counter = Counter()
     counter.update(list_file)
     counter.most_common()
