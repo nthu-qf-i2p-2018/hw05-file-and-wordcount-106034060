@@ -33,7 +33,7 @@ def main(filename) :
             
     import pickle
     with open('wordcount.pkl', 'wb') as fil:
-        pickle.dump(counter.most_common(), fil)
+        pickle.dump(counter, fil)
             
 if __name__ == '__main__':
     main("i_have_a_dream.txt")
